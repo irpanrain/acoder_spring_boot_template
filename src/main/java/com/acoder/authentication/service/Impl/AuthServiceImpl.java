@@ -87,11 +87,13 @@ public class AuthServiceImpl implements AuthService {
     public ResponseEntity<?> register(SignUpRequest signUpRequest) {
         if (userRepository.existsByUsername(signUpRequest.getUsername())) {
             //check if exists
-            return new ResponseEntity<>(new ApiResponse(false, "Username is already taken!"), HttpStatus.BAD_REQUEST);
+            return new ResponseEntity(new ApiResponse(false, "Username is already taken!"),
+                    HttpStatus.BAD_REQUEST);
         }
 
         if (userRepository.existsByEmail(signUpRequest.getEmail())) {
-            return new ResponseEntity<>(new ApiResponse(false, "Email address already in use!"), HttpStatus.BAD_REQUEST);
+            return new ResponseEntity(new ApiResponse(false, "Email address already in use!"),
+                    HttpStatus.BAD_REQUEST);
         }
 
         //Creating user's account
